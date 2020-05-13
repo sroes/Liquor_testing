@@ -5,9 +5,9 @@ void main() {
   // Define a test. The TestWidgets function also provides a WidgetTester
   // to work with. The WidgetTester allows building and interacting
   // with widgets in the test environment.
-  testWidgets('MyWidget has a title and message', (WidgetTester tester) async {
+  testWidgets('LiquorMeTimbers has a title and message', (WidgetTester tester) async {
     // Create the widget by telling the tester to build it.
-    await tester.pumpWidget(MyWidget(title: 'T', message: 'M'));
+    await tester.pumpWidget(LiquorMeTimbers(title: 'T', message: 'M'));
 
     // Create the Finders.
     final titleFinder = find.text('T');
@@ -20,11 +20,11 @@ void main() {
   });
 }
 
-class MyWidget extends StatelessWidget {
+class LiquorMeTimbers extends StatelessWidget {
   final String title;
   final String message;
 
-  const MyWidget({
+  const LiquorMeTimbers({
     Key key,
     @required this.title,
     @required this.message,
