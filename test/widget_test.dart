@@ -67,7 +67,6 @@ testWidgets('empty email and password doesn\'t call sign in', (WidgetTester test
     expect(hintText.toString().contains(''), true);
   });
 
-
 }
 
 class LiquorMeTimbers extends StatelessWidget {
