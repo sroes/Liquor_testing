@@ -22,10 +22,10 @@ void main() {
     // Define the test key.
     final testKey = Key('K');
 
-    // Build a MaterialApp with the testKey.
-    await tester.pumpWidget(MaterialApp(key: testKey, home: Container()));
+    // Build LiquorMeTimbers with the testKey.
+    await tester.pumpWidget(LiquorMeTimbers(key: testKey, home: Container()));
 
-    // Find the MaterialApp widget using the testKey.
+    // Find LiquorMeTimbers widget using the testKey.
     expect(find.byKey(testKey), findsOneWidget);
   });
 
@@ -41,6 +41,32 @@ void main() {
 
 ////////////
 
+testWidgets('Add and remove a todo', (WidgetTester tester) async {
+  // Build the widget
+  await tester.pumpWidget(LiquorMeTimbers());
+
+  // Enter 'hi' into the TextField.
+  await tester.enterText(find.byType(TextField), 'hi');
+});
+  
+testWidgets('empty email and password doesn\'t call sign in', (WidgetTester tester) async {
+
+    // create a LoginPage
+    AuthService AuthService = new (title: 'test');
+    // add it to the widget tester
+    await tester.pumpWidget(loginPage);
+
+    // tap on the login button
+    Finder loginButton = find.byKey(new Key('login'));
+    await tester.tap(loginButton);
+
+    // 'pump' the tester again. This causes the widget to rebuild
+    await tester.pump();
+
+    // check that the hint text is empty
+    Finder hintText = find.byKey(new Key('hint'));
+    expect(hintText.toString().contains(''), true);
+  });
 
 }
 
