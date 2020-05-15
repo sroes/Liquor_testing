@@ -48,24 +48,6 @@ testWidgets('Add and remove a todo', (WidgetTester tester) async {
   await tester.enterText(find.byType(TextField), 'hi');
 });
   
-testWidgets('empty email and password doesn\'t call sign in', (WidgetTester tester) async {
-
-    // create a LoginPage
-    LoginPage loginPage = new LoginPage(title: 'test');
-    // add it to the widget tester
-    await tester.pumpWidget(loginPage);
-
-    // tap on the login button
-    Finder loginButton = find.byKey(new Key('login'));
-    await tester.tap(loginButton);
-
-    // 'pump' the tester again. This causes the widget to rebuild
-    await tester.pump();
-
-    // check that the hint text is empty
-    Finder hintText = find.byKey(new Key('hint'));
-    expect(hintText.toString().contains(''), true);
-  });
 
 }
 
