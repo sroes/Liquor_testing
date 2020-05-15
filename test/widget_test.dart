@@ -48,32 +48,25 @@ testWidgets('Add and remove a todo', (WidgetTester tester) async {
   await tester.enterText(find.byType(TextField), 'hi');
 });
   
-testWidgets('Add and remove a todo', (WidgetTester tester) async {
-  // Enter text code...
+testWidgets('empty email and password doesn\'t call sign in', (WidgetTester tester) async {
 
-  // Tap the add button.
-  await tester.tap(find.byType(FloatingActionButton));
+    // create a LoginPage
+    LoginPage loginPage = new LoginPage(title: 'test');
+    // add it to the widget tester
+    await tester.pumpWidget(loginPage);
 
-  // Rebuild the widget after the state has changed.
-  await tester.pump();
+    // tap on the login button
+    Finder loginButton = find.byKey(new Key('login'));
+    await tester.tap(loginButton);
 
-  // Expect to find the item on screen.
-  expect(find.text('hi'), findsOneWidget);
-});
+    // 'pump' the tester again. This causes the widget to rebuild
+    await tester.pump();
 
-testWidgets('Add and remove a todo', (WidgetTester tester) async {
-  // Enter text and add the item...
-
-  // Swipe the item to dismiss it.
-  await tester.drag(find.byType(Dismissible), Offset(500.0, 0.0));
-
-  // Build the widget until the dismiss animation ends.
-  await tester.pumpAndSettle();
-
-  // Ensure that the item is no longer on screen.
-  expect(find.text('hi'), findsNothing);
-});
-
+    // check that the hint text is empty
+    Finder hintText = find.byKey(new Key('hint'));
+    expect(hintText.toString().contains(''), true);
+  });
+}
 }
 
 class LiquorMeTimbers extends StatelessWidget {
