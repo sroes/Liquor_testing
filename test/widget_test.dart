@@ -37,6 +37,36 @@ void main() {
     // Search for the childWidget in the tree and verify it exists.
     expect(find.byWidget(childWidget), findsOneWidget);
   });
+
+    testWidgets('Items are displayed', (WidgetTester tester) async {
+ 
+    // Inject data provider
+    ListBloc().injectDataProviderForTest(TestDataProvider());
+ 
+    // Build widget
+    await tester.pumpWidget(ListPageWrapper());
+ 
+    // This causes the stream builder to get the data
+    await tester.pump(Duration.zero);
+ 
+    final item1Finder = find.text(ITEM_TITLE_ALPHA_1);
+    final item2Finder = find.text(ITEM_TITLE_ALPHA_2);
+    final item3Finder = find.text(ITEM_TITLE_ALPHA_3);
+    expect(item1Finder, findsOneWidget);
+    expect(item2Finder, findsOneWidget);
+    expect(item3Finder, findsOneWidget);
+ 
+    // Under the hood, Container uses BoxDecoration when setting color
+    WidgetPredicate widgetSelectedPredicate = (Widget widget) => widget is Container && widget.decoration == BoxDecoration(color: Colors.green.shade200);
+    WidgetPredicate widgetUnselectedPredicate = (Widget widget) => widget is Container && widget.decoration == BoxDecoration(color: Colors.white);
+ 
+    expect(find.byWidgetPredicate(widgetSelectedPredicate), findsOneWidget);
+    expect(find.byWidgetPredicate(widgetUnselectedPredicate), findsNWidgets(2));
+  });
+ 
+  
+ 
+}
   
 }
 
