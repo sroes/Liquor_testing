@@ -66,7 +66,7 @@ testWidgets('empty email and password doesn\'t call sign in', (WidgetTester test
     Finder hintText = find.byKey(new Key('hint'));
     expect(hintText.toString().contains(''), true);
   });
-}
+
 }
 
 class LiquorMeTimbers extends StatelessWidget {
