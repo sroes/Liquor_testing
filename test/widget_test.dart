@@ -40,7 +40,7 @@ void main() {
 
 testWidgets('Add and remove a todo', (WidgetTester tester) async {
   // Build the widget
-  await tester.pumpWidget(TodoList());
+  await tester.pumpWidget(LiquorMeTimbers());
 
   // Enter 'hi' into the TextField.
   await tester.enterText(find.byType(TextField), 'hi');
