@@ -15,8 +15,6 @@ before_install:
   - pip install --user cpp-coveralls
 
 script:
-  - make clean
-  - make
   - ./Liquor_testing
 
 after_success:
