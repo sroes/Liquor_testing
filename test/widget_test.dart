@@ -41,8 +41,24 @@ void main() {
 
 ////////////
 
+testWidgets('email and password sign in', (WidgetTester tester) async {
 
+    // create a LoginPage
+    SignIn = new (title: 'test');
+    // add it to the widget tester
+    await tester.pumpWidget(loginPage);
 
+    // tap on the login button
+    Finder RaisedButton = find.byKey(new Key('login'));
+    await tester.tap(RaisedButton);
+
+    // 'pump' the tester again. This causes the widget to rebuild
+    await tester.pump();
+
+    // check that the hint text is empty
+    Finder Text = find.byKey(new Key('hint'));
+    expect(Text.toString().contains(''), true);
+  });
 
 }
 
